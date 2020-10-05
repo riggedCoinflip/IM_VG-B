@@ -17,7 +17,7 @@ It's an example showing usage of Java Delegate to send and receive messages.
 
 You start in Tasklist "startandsend",
 depending on value of Age do a user task in "receiveandreply" and
-look at the values in again in "startandsend".
+look at the values in again "startandsend".
 
  
 ### Unit Test
