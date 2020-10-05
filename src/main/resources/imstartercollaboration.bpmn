@@ -3,8 +3,8 @@
   <bpmn:collaboration id="Collaboration_18keq99">
     <bpmn:participant id="Participant_1o5a4f6" name="StartAndSendProcess" processRef="startandsend" />
     <bpmn:participant id="Participant_0jspcl8" name="ReceiveAndReplyProcess" processRef="receiveandreply" />
-    <bpmn:messageFlow id="Flow_0z17guj" name="NameUndAlter" sourceRef="Activity_1hhk2wl" targetRef="Event_13nj29h" />
-    <bpmn:messageFlow id="Flow_0nqvhwi" name="NameAlterUndBestätigung" sourceRef="Activity_14v7fhw" targetRef="Event_030x699" />
+    <bpmn:messageFlow id="Flow_0z17guj" name="NameAndAge" sourceRef="Activity_1hhk2wl" targetRef="Event_13nj29h" />
+    <bpmn:messageFlow id="Flow_0nqvhwi" name="NameAgeAndApprovement" sourceRef="Activity_14v7fhw" targetRef="Event_030x699" />
   </bpmn:collaboration>
   <bpmn:process id="startandsend" name="startandsend" isExecutable="true">
     <bpmn:startEvent id="Event_17tn904" name="StartAndSendProcess&#10;started">
@@ -234,14 +234,14 @@
         <di:waypoint x="262" y="355" />
         <di:waypoint x="262" y="537" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="369" y="337" width="73" height="14" />
+          <dc:Bounds x="372" y="337" width="69" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0nqvhwi_di" bpmnElement="Flow_0nqvhwi">
         <di:waypoint x="662" y="515" />
         <di:waypoint x="662" y="223" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="669" y="340" width="86" height="27" />
+          <dc:Bounds x="670" y="340" width="89" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
