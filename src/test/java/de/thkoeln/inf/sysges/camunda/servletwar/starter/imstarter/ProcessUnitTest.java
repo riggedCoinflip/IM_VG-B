@@ -1,4 +1,4 @@
-package de.thkoeln.inf.sysges.camunda.servletwar.im_vgb;
+package de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter;
 
 import org.apache.ibatis.logging.LogFactory;
 import org.camunda.bpm.engine.runtime.ProcessInstance;

@@ -1,4 +1,4 @@
-package de.thkoeln.inf.sysges.camunda.servletwar.im_vgb;
+package de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter;
 
 import java.util.HashMap;
 import java.util.Map;

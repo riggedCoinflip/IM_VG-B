@@ -29,7 +29,7 @@
       <bpmn:incoming>Flow_0a34xcw</bpmn:incoming>
       <bpmn:outgoing>Flow_1a1xdyl</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sendTask id="Activity_1hhk2wl" name="Start Process by Message" camunda:asyncBefore="true" camunda:class="InstantiateProcessByMessageDelegate">
+    <bpmn:sendTask id="Activity_1hhk2wl" name="Start Process by Message" camunda:asyncBefore="true" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter.InstantiateProcessByMessageDelegate">
       <bpmn:incoming>Flow_1a1xdyl</bpmn:incoming>
       <bpmn:outgoing>Flow_11r69le</bpmn:outgoing>
     </bpmn:sendTask>
@@ -76,7 +76,7 @@
       <bpmn:incoming>Flow_0t12h3k</bpmn:incoming>
       <bpmn:outgoing>Flow_0gpg9rp</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sendTask id="Activity_14v7fhw" name="Send Message" camunda:asyncBefore="true" camunda:class="ContinueProcessByMessageDelegate">
+    <bpmn:sendTask id="Activity_14v7fhw" name="Send Message" camunda:asyncBefore="true" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter.ContinueProcessByMessageDelegate">
       <bpmn:documentation>asynchronous continuation mandatory</bpmn:documentation>
       <bpmn:incoming>Flow_0gpg9rp</bpmn:incoming>
       <bpmn:outgoing>Flow_0ot100z</bpmn:outgoing>
