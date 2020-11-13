@@ -1,4 +1,4 @@
-package de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter;
+package de.thkoeln.inf.sysges.camunda.servletwar.im_vgb;
 
 
 import java.util.logging.Logger;
