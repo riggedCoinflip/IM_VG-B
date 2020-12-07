@@ -16,7 +16,7 @@ public class CheckInsuranceDelegate implements JavaDelegate {
 
         delegateExecution.setVariable("ageRisk", ageRisk(age));
         delegateExecution.setVariable("bmiRisk", bmiRisk(bmi));
-        delegateExecution.setVariable("historyRisk", bmiRisk(bmi));
+        delegateExecution.setVariable("historyRisk", historyRisk(highestHistoryCategory));
     }
 
     public int ageRisk(int age) throws IllegalArgumentException {
