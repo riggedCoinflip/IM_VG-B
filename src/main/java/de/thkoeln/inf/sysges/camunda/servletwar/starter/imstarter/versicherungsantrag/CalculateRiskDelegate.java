@@ -3,20 +3,34 @@ package de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter.versicherungs
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CheckInsuranceDelegate implements JavaDelegate {
+public class CalculateRiskDelegate implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        int age = (int) delegateExecution.getVariable("age");
-        float bmi = (int) delegateExecution.getVariable("bmi");
-        int highestHistoryCategory = (int) delegateExecution.getVariable("highestHistoryCategory");
+        LocalDate birthdate = (LocalDate) delegateExecution.getVariable("pv_birthdate");
+        int age = calculateAge(birthdate);
+        delegateExecution.setVariable("age", age);
+
+        int height = (int) delegateExecution.getVariable("pv_height");
+        int weight = (int) delegateExecution.getVariable("pv_weight");
+        float bmi = calculateBmi(height, weight);
+        delegateExecution.setVariable("bmi", bmi);
+
+        int highestHistoryCategory = (int) delegateExecution.getVariable("pv_riskHistory");
 
         delegateExecution.setVariable("ageRisk", ageRisk(age));
         delegateExecution.setVariable("bmiRisk", bmiRisk(bmi));
         delegateExecution.setVariable("historyRisk", historyRisk(highestHistoryCategory));
+    }
+
+    public int calculateAge(LocalDate birthDate) {
+        LocalDate currentDate = LocalDate.now();
+        return Period.between(birthDate, currentDate).getYears();
     }
 
     public int ageRisk(int age) throws IllegalArgumentException {
@@ -35,6 +49,10 @@ public class CheckInsuranceDelegate implements JavaDelegate {
         } else {
             throw new IllegalArgumentException("age = " + age + " can not be higher than 120");
         }
+    }
+
+    public float calculateBmi(int height, int weight) {
+        return (float) (weight / Math.pow(((float) height / 100), 2));
     }
 
     public int bmiRisk(float bmi) throws IllegalArgumentException {
