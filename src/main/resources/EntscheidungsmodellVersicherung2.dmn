@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_01xbfxe" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.4.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_01xbfxe" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.3.0">
   <inputData id="InputData_1dk2ciy" name="Alter" />
   <inputData id="InputData_0bwj1yg" name="Vorerkrankungen (jeweils zwei Einträge pro Zeile Name und Bewertung)" />
   <inputData id="InputData_165ajd1" name="BMI" />
@@ -278,7 +278,7 @@
           <text>&gt;=50 &amp;&amp; &lt;70</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0oi326z">
-          <text>&lt;50</text>
+          <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_095x6hd">
           <text>versicherungsfähig</text>
@@ -295,6 +295,34 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0pih80w">
+          <text>manuelle Prüfung</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_04fivd7">
+        <inputEntry id="UnaryTests_0520l1a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0n3ie8f">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0s8r5gc">
+          <text>&gt;= 50</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dgys61">
+          <text>manuelle Prüfung</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0hbras5">
+        <inputEntry id="UnaryTests_161eey1">
+          <text>&gt;= 70</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1m9tx74">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tdcyc6">
+          <text>&gt;= 25</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0d1xzlc">
           <text>manuelle Prüfung</text>
         </outputEntry>
       </rule>

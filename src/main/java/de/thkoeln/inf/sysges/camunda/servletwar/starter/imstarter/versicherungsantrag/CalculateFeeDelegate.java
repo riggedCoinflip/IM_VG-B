@@ -11,9 +11,9 @@ public class CalculateFeeDelegate implements JavaDelegate {
         int age = (int) delegateExecution.getVariable("age");
         int baseFee = Math.max(110, 10 * age);
 
-        float riskFee = 0;
-        if (delegateExecution.hasVariable("riskFee")) {
-            riskFee = (float) delegateExecution.getVariable("riskFee");
+        int riskFee = 0;
+        if (delegateExecution.hasVariable("pv_riskFee")) {
+            riskFee = (int) delegateExecution.getVariable("pv_riskFee");
         }
 
         float fee = baseFee + riskFee;
