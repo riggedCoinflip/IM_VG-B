@@ -1,3 +1,9 @@
+### This is the functional prototype presented at the presentation on 8.12.2020.
+## This branch is not used for further development!
+
+<br/><br/>
+<br/><br/>
+<br/><br/>
 # Camunda BPM Process Application *IMStarter*
 A Process Application for [Camunda BPM](http://docs.camunda.org) to get started implementing a workflow.
 
