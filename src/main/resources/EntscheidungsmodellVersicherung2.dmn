@@ -278,7 +278,7 @@
           <text>&gt;=50 &amp;&amp; &lt;70</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0oi326z">
-          <text></text>
+          <text>&lt;50</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_095x6hd">
           <text>versicherungsfähig</text>
