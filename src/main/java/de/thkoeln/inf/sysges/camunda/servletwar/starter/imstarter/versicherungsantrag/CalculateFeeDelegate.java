@@ -13,10 +13,10 @@ public class CalculateFeeDelegate implements JavaDelegate {
 
         int riskFee = 0;
         if (delegateExecution.hasVariable("pv_riskFee")) {
-            riskFee = (int) delegateExecution.getVariable("pv_riskFee");
+            riskFee = ((Long) delegateExecution.getVariable("pv_riskFee")).intValue();
         }
 
-        float fee = baseFee + riskFee;
+        int fee = baseFee + riskFee;
 
         delegateExecution.setVariable("fee", fee);
     }

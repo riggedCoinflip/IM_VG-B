@@ -5,6 +5,8 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,20 +14,30 @@ public class CalculateRiskDelegate implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        LocalDate birthdate = (LocalDate) delegateExecution.getVariable("pv_birthdate");
+        /*
+        We use LocalDate instead of Date as LocalDate has a 'now()' function.
+        Date is not typecastable to LocalDate so we use a method instead
+         */
+        LocalDate birthdate = convertToLocalDateViaInstant((Date) delegateExecution.getVariable("pv_birthdate"));
         int age = calculateAge(birthdate);
         delegateExecution.setVariable("age", age);
 
-        int height = (int) delegateExecution.getVariable("pv_height");
-        int weight = (int) delegateExecution.getVariable("pv_weight");
-        float bmi = calculateBmi(height, weight);
+        int height = ((Long) delegateExecution.getVariable("pv_height")).intValue();
+        int weight = ((Long) delegateExecution.getVariable("pv_weight")).intValue();
+        int bmi = (int) calculateBmi(height, weight);
         delegateExecution.setVariable("bmi", bmi);
 
-        int highestHistoryCategory = (int) delegateExecution.getVariable("pv_riskHistory");
+        int highestHistoryCategory = ((Long) delegateExecution.getVariable("pv_riskHistory")).intValue();
 
         delegateExecution.setVariable("ageRisk", ageRisk(age));
         delegateExecution.setVariable("bmiRisk", bmiRisk(bmi));
         delegateExecution.setVariable("historyRisk", historyRisk(highestHistoryCategory));
+    }
+
+    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
     }
 
     public int calculateAge(LocalDate birthDate) {
@@ -68,7 +80,12 @@ public class CalculateRiskDelegate implements JavaDelegate {
             return 70;
         } else if (bmi <= 35){
             return 100;
-        } else {
+        } else { //bmi > 35
+            /*
+            Aufgebenstellung besagt, dass wir bei einem höheren BMI als 35 direkt 'keine Versicherungsfähigkeit'
+            zurückgeben sollen.
+            Wir halten es für Sinnvoller, stattdessen einen sehr hohen Risikofaktor anzugeben.
+             */
            return 1000;
         }
     }

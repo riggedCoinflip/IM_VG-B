@@ -10,6 +10,7 @@ public class IsInsuranceAllowedDelegate implements JavaDelegate {
         int bmiRisk = (int) delegateExecution.getVariable("bmiRisk");
         int historyRisk = (int) delegateExecution.getVariable("historyRisk");
 
+        String insuranceMode;
         if (bmiRisk > 100 || historyRisk >= 100) {
             delegateExecution.setVariable("insuranceMode", "not insurable");
         } else if (ageRisk < 50 && bmiRisk < 50 && historyRisk < 50) {
@@ -18,7 +19,7 @@ public class IsInsuranceAllowedDelegate implements JavaDelegate {
             delegateExecution.setVariable("insuranceMode", "insurable");
         } else if ((ageRisk >= 50 && ageRisk < 70) && (bmiRisk >= 50 && bmiRisk < 70)) {
             delegateExecution.setVariable("insuranceMode", "manual test");
-        } else if (historyRisk > 50) {
+        } else if (historyRisk >= 50) {
             delegateExecution.setVariable("insuranceMode", "manual test");
         } else if (ageRisk >= 70 && historyRisk >= 25) {
             delegateExecution.setVariable("insuranceMode", "manual test");
