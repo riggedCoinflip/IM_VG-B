@@ -8,8 +8,8 @@ public class CalculateFeeDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
-        int age = (int) delegateExecution.getVariable("age");
-        int baseFee = Math.max(110, 10 * age);
+        int pv_age = (int) delegateExecution.getVariable("pv_age");
+        int baseFee = Math.max(110, 10 * pv_age);
 
         int riskFee;
         if (delegateExecution.hasVariable("pv_riskFee")) {
@@ -18,8 +18,8 @@ public class CalculateFeeDelegate implements JavaDelegate {
             riskFee = 0;
         }
 
-        int fee = baseFee + riskFee;
+        int pv_fee = baseFee + riskFee;
 
-        delegateExecution.setVariable("fee", fee);
+        delegateExecution.setVariable("pv_fee", pv_fee);
     }
 }

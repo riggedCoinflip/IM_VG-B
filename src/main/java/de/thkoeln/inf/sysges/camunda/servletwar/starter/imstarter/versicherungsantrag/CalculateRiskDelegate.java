@@ -18,20 +18,24 @@ public class CalculateRiskDelegate implements JavaDelegate {
         We use LocalDate instead of Date as LocalDate has a 'now()' function.
         Date is not typecastable to LocalDate so we use a method instead
          */
-        LocalDate birthdate = convertToLocalDateViaInstant((Date) delegateExecution.getVariable("pv_birthdate"));
-        int age = calculateAge(birthdate);
-        delegateExecution.setVariable("age", age);
 
-        int height = ((Long) delegateExecution.getVariable("pv_height")).intValue();
-        int weight = ((Long) delegateExecution.getVariable("pv_weight")).intValue();
-        int bmi = (int) calculateBmi(height, weight);
-        delegateExecution.setVariable("bmi", bmi);
+        // Age
+        LocalDate mBirthdate = convertToLocalDateViaInstant((Date) delegateExecution.getVariable("mBirthdate"));
+        int pv_age = calculateAge(mBirthdate);
+        delegateExecution.setVariable("pv_age", pv_age);
 
-        int highestHistoryCategory = ((Long) delegateExecution.getVariable("pv_riskHistory")).intValue();
+        // BMI
+        int pv_height = ((Long) delegateExecution.getVariable("mHeight")).intValue();
+        int pv_weight = ((Long) delegateExecution.getVariable("mWeight")).intValue();
+        int pv_bmi = (int) calculateBmi(pv_height, pv_weight);
+        delegateExecution.setVariable("pv_bmi", pv_bmi);
 
-        delegateExecution.setVariable("ageRisk", ageRisk(age));
-        delegateExecution.setVariable("bmiRisk", bmiRisk(bmi));
-        delegateExecution.setVariable("historyRisk", historyRisk(highestHistoryCategory));
+        // Risk
+        int pv_highestHistoryCategory = ((Long) delegateExecution.getVariable("mHistory")).intValue();
+
+        delegateExecution.setVariable("pv_ageRisk", ageRisk(pv_age));
+        delegateExecution.setVariable("pv_bmiRisk", bmiRisk(pv_bmi));
+        delegateExecution.setVariable("pv_historyRisk", historyRisk(pv_highestHistoryCategory));
     }
 
     public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
