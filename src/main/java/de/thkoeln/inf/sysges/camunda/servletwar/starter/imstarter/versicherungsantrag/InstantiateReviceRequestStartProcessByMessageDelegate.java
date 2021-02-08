@@ -20,11 +20,21 @@ public class InstantiateReviceRequestStartProcessByMessageDelegate implements Ja
         processVariables.put("pv_sex", execution.getVariable("mSex"));
         processVariables.put("pv_height", execution.getVariable("mHeight"));
         processVariables.put("pv_weight", execution.getVariable("mWeight"));
-        processVariables.put("pv_history", execution.getVariable("mHistory"));
         processVariables.put("pv_addressPostalCode", execution.getVariable("mAddressPostalCode"));
         processVariables.put("pv_addressCity", execution.getVariable("mAddressCity"));
         processVariables.put("pv_addressStreetName", execution.getVariable("mAddressStreetName"));
         processVariables.put("pv_addressStreetNumber", execution.getVariable("mAddressStreetNumber"));
+
+        processVariables.put("pv_allergies", execution.getVariable("mAllergies"));
+        processVariables.put("pv_lactoseIntolerance", execution.getVariable("mLactoseIntolerance"));
+        processVariables.put("pv_neurodermatitis", execution.getVariable("mNeurodermatitis"));
+        processVariables.put("pv_diabetes", execution.getVariable("mDiabetes"));
+        processVariables.put("pv_chronicalLungDiseases", execution.getVariable("mChronicalLungDiseases"));
+        processVariables.put("pv_osteoporosis", execution.getVariable("mOsteoporosis"));
+        processVariables.put("pv_asthma", execution.getVariable("mAsthma"));
+        processVariables.put("pv_paralysis", execution.getVariable("mParalysis"));
+        processVariables.put("pv_multipleSclerosis", execution.getVariable("mMultipleSclerosis"));
+        processVariables.put("pv_dementia", execution.getVariable("mDementia"));
 
 
         // set the correlation id to identify this in receiving process

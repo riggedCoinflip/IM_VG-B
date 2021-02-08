@@ -31,11 +31,14 @@ public class CalculateRiskDelegate implements JavaDelegate {
         delegateExecution.setVariable("pv_bmi", pv_bmi);
 
         // Risk
-        int pv_highestHistoryCategory = ((Long) delegateExecution.getVariable("mHistory")).intValue();
+        int pv_history = calculateHistory(delegateExecution);
+        delegateExecution.setVariable("pv_history", pv_history);
+
+
 
         delegateExecution.setVariable("pv_ageRisk", ageRisk(pv_age));
         delegateExecution.setVariable("pv_bmiRisk", bmiRisk(pv_bmi));
-        delegateExecution.setVariable("pv_historyRisk", historyRisk(pv_highestHistoryCategory));
+        delegateExecution.setVariable("pv_historyRisk", historyRisk(pv_history));
     }
 
     public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
@@ -47,6 +50,30 @@ public class CalculateRiskDelegate implements JavaDelegate {
     public int calculateAge(LocalDate birthDate) {
         LocalDate currentDate = LocalDate.now();
         return Period.between(birthDate, currentDate).getYears();
+    }
+
+    public int calculateHistory(DelegateExecution delegateExecution) {
+        //ugly solution, a mapping would be better. But it works.
+
+        if ((boolean) delegateExecution.getVariable("mDementia") ||
+            (boolean) delegateExecution.getVariable("mParalysis") || 
+            (boolean) delegateExecution.getVariable("mMultipleSclerosis")) {
+            return 3;
+        }
+        else if ((boolean) delegateExecution.getVariable("mDiabetes") ||
+                 (boolean) delegateExecution.getVariable("mChronicalLungDiseases") ||
+                 (boolean) delegateExecution.getVariable("mAsthma") ||
+                 (boolean) delegateExecution.getVariable("mOsteoporosis")) {
+            return 2;
+        }
+        else if ((boolean) delegateExecution.getVariable("mAllergies") ||
+                 (boolean) delegateExecution.getVariable("mLactoseIntolerance") ||
+                 (boolean) delegateExecution.getVariable("mNeurodermatitis")) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
     }
 
     public int ageRisk(int age) throws IllegalArgumentException {

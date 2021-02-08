@@ -17,13 +17,13 @@ public class IsInsuranceAllowedDelegate implements JavaDelegate {
         } else if ((pv_ageRisk < 50 && (pv_bmiRisk >= 50 && pv_bmiRisk < 70) && pv_historyRisk < 50) || ((pv_ageRisk >= 50 && pv_ageRisk < 70) && pv_bmiRisk < 50 && pv_historyRisk < 50)) {
             delegateExecution.setVariable("pv_isInsurable", true);
         } else if ((pv_ageRisk >= 50 && pv_ageRisk < 70) && (pv_bmiRisk >= 50 && pv_bmiRisk < 70)) {
-            delegateExecution.setVariable("insuranceMode", "manual test");
+            delegateExecution.setVariable("pv_insuranceMode", "manual test");
         } else if (pv_historyRisk >= 50) {
-            delegateExecution.setVariable("insuranceMode", "manual test");
+            delegateExecution.setVariable("pv_insuranceMode", "manual test");
         } else if (pv_ageRisk >= 70 && pv_historyRisk >= 25) {
-            delegateExecution.setVariable("insuranceMode", "manual test");
+            delegateExecution.setVariable("pv_insuranceMode", "manual test");
         } else if (pv_bmiRisk >= 50 && pv_historyRisk >= 25) {
-            delegateExecution.setVariable("insuranceMode", "manual test");
+            delegateExecution.setVariable("pv_insuranceMode", "manual test");
         } else {
             throw new IllegalArgumentException(String.format("No insurance policy for ageRisk = %d, bmiRisk = %d, historyRisk =  %d", pv_ageRisk, pv_bmiRisk, pv_historyRisk));
         }
