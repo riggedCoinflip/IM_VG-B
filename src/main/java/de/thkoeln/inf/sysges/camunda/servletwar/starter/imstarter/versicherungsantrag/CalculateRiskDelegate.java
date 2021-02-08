@@ -52,30 +52,6 @@ public class CalculateRiskDelegate implements JavaDelegate {
         return Period.between(birthDate, currentDate).getYears();
     }
 
-    public int calculateHistory(DelegateExecution delegateExecution) {
-        //ugly solution, a mapping would be better. But it works.
-
-        if ((boolean) delegateExecution.getVariable("mDementia") ||
-            (boolean) delegateExecution.getVariable("mParalysis") || 
-            (boolean) delegateExecution.getVariable("mMultipleSclerosis")) {
-            return 3;
-        }
-        else if ((boolean) delegateExecution.getVariable("mDiabetes") ||
-                 (boolean) delegateExecution.getVariable("mChronicalLungDiseases") ||
-                 (boolean) delegateExecution.getVariable("mAsthma") ||
-                 (boolean) delegateExecution.getVariable("mOsteoporosis")) {
-            return 2;
-        }
-        else if ((boolean) delegateExecution.getVariable("mAllergies") ||
-                 (boolean) delegateExecution.getVariable("mLactoseIntolerance") ||
-                 (boolean) delegateExecution.getVariable("mNeurodermatitis")) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    }
-
     public int ageRisk(int age) throws IllegalArgumentException {
         if (age < 0) {
             throw new IllegalArgumentException("age = " + age + " can not be less than 0");
@@ -109,15 +85,32 @@ public class CalculateRiskDelegate implements JavaDelegate {
             return 50;
         } else if (bmi <= 32){
             return 70;
-        } else if (bmi <= 35){
-            return 100;
-        } else { //bmi > 35
-            /*
-            Aufgebenstellung besagt, dass wir bei einem höheren BMI als 35 direkt 'keine Versicherungsfähigkeit'
-            zurückgeben sollen.
-            Wir halten es für Sinnvoller, stattdessen einen sehr hohen Risikofaktor anzugeben.
-             */
-           return 1000;
+        } else { //bmi > 32
+           return 100;
+        }
+    }
+
+    public int calculateHistory(DelegateExecution delegateExecution) {
+        //ugly solution, a mapping would be better. But it works.
+
+        if ((boolean) delegateExecution.getVariable("mDementia") ||
+                (boolean) delegateExecution.getVariable("mParalysis") ||
+                (boolean) delegateExecution.getVariable("mMultipleSclerosis")) {
+            return 3;
+        }
+        else if ((boolean) delegateExecution.getVariable("mDiabetes") ||
+                (boolean) delegateExecution.getVariable("mChronicalLungDiseases") ||
+                (boolean) delegateExecution.getVariable("mAsthma") ||
+                (boolean) delegateExecution.getVariable("mOsteoporosis")) {
+            return 2;
+        }
+        else if ((boolean) delegateExecution.getVariable("mAllergies") ||
+                (boolean) delegateExecution.getVariable("mLactoseIntolerance") ||
+                (boolean) delegateExecution.getVariable("mNeurodermatitis")) {
+            return 1;
+        }
+        else {
+            return 0;
         }
     }
 
