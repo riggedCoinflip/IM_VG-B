@@ -6,14 +6,14 @@
     <bpmn:messageFlow id="Flow_0jbde6b" name="Antragsformular" sourceRef="Event_0utaohl" targetRef="Event_1ltz01x" />
     <bpmn:messageFlow id="Flow_18q2yet" name="Antragsformular" sourceRef="Event_1mejn02" targetRef="Event_1ijyck4" />
     <bpmn:messageFlow id="Flow_1ysocvf" sourceRef="Event_0gnzpoq" targetRef="Event_059lpto" />
-    <bpmn:messageFlow id="Flow_0awmilo" sourceRef="Event_1yvha04" targetRef="Participant_17dzv64" />
-    <bpmn:messageFlow id="Flow_1bb52fh" sourceRef="Event_1789jwh" targetRef="Participant_17dzv64" />
+    <bpmn:messageFlow id="Flow_0awmilo" name="notification police activated" sourceRef="Event_1yvha04" targetRef="Participant_17dzv64" />
+    <bpmn:messageFlow id="Flow_1bb52fh" name="notification police cancelled" sourceRef="Event_1789jwh" targetRef="Participant_17dzv64" />
     <bpmn:messageFlow id="Flow_0b6nra3" name="pv_rejectReason" sourceRef="Event_1ne9a7o" targetRef="Participant_17dzv64" />
     <bpmn:messageFlow id="Flow_0oibca1" sourceRef="Event_0dvhav0" targetRef="Event_1ltz01x" />
     <bpmn:messageFlow id="Flow_0ueilfl" name="fee" sourceRef="Activity_0lny8xh" targetRef="Event_0ajcpdb" />
     <bpmn:messageFlow id="Flow_15o4j3v" name="&#10;&#10;mIsPoliceCancelled" sourceRef="Activity_0f6fvi0" targetRef="Event_059lpto" />
   </bpmn:collaboration>
-  <bpmn:process id="Process_1mhfury" name="Versicherungsantrag" isExecutable="true">
+  <bpmn:process id="Process_1mhfury" name="" isExecutable="true">
     <bpmn:exclusiveGateway id="Gateway_0dw8s6p">
       <bpmn:incoming>Flow_0fkt3h6</bpmn:incoming>
       <bpmn:incoming>Flow_0u5zgky</bpmn:incoming>
@@ -25,7 +25,7 @@
       <bpmn:outgoing>Flow_07enl0o</bpmn:outgoing>
       <bpmn:outgoing>Flow_0fkt3h6</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:businessRuleTask id="Activity_1l3726n" name="Beitragsberechnung" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter.versicherungsantrag.CalculateFeeDelegate">
+    <bpmn:businessRuleTask id="Activity_1l3726n" name="Beitragsberechnung" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.versicherungsgesellschaft.versicherungsantrag.VG_AG.CalculateFeeDelegate">
       <bpmn:incoming>Flow_0u9zco0</bpmn:incoming>
       <bpmn:outgoing>Flow_1odsikn</bpmn:outgoing>
     </bpmn:businessRuleTask>
@@ -137,14 +137,14 @@
     </bpmn:exclusiveGateway>
     <bpmn:intermediateThrowEvent id="Event_1mejn02" name="Sende Anforderung zur Überarbeitung">
       <bpmn:incoming>Flow_1eggdrf</bpmn:incoming>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0exnjd1" messageRef="Message_0ckntup" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter.versicherungsantrag.InstantiateReviceRequestStartProcessByMessageDelegate" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0exnjd1" messageRef="Message_0ckntup" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.versicherungsgesellschaft.versicherungsantrag.communication.InstantiateReviceRequestStartProcessByMessageDelegate" />
     </bpmn:intermediateThrowEvent>
     <bpmn:dataStoreReference id="DataStoreReference_0wwwfcd" name="Archiv" />
-    <bpmn:businessRuleTask id="Activity_0z4t9ih" name="Risikofaktoren werden berechnet" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter.versicherungsantrag.CalculateRiskDelegate">
+    <bpmn:businessRuleTask id="Activity_0z4t9ih" name="Risikofaktoren werden berechnet" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.versicherungsgesellschaft.versicherungsantrag.VG_AG.CalculateRiskDelegate">
       <bpmn:incoming>Flow_0ssmmxs</bpmn:incoming>
       <bpmn:outgoing>Flow_1gfn1oj</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:businessRuleTask id="Activity_055g0jk" name="Versicherungsfähigkeit wird vom System geprüft" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter.versicherungsantrag.IsInsuranceAllowedDelegate">
+    <bpmn:businessRuleTask id="Activity_055g0jk" name="Versicherungsfähigkeit wird vom System geprüft" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.versicherungsgesellschaft.versicherungsantrag.VG_AG.IsInsuranceAllowedDelegate">
       <bpmn:incoming>Flow_1gfn1oj</bpmn:incoming>
       <bpmn:outgoing>Flow_04aue3e</bpmn:outgoing>
     </bpmn:businessRuleTask>
@@ -308,7 +308,7 @@
       </bpmn:dataOutputAssociation>
     </bpmn:task>
     <bpmn:sequenceFlow id="Flow_1mjkko3" sourceRef="Activity_03uxx2j" targetRef="Activity_0ya3bd1" />
-    <bpmn:sendTask id="Activity_0lny8xh" name="Sende Police" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter.versicherungsantrag.InstantiateAcceptOrDeclinePoliceStartProcessByMessageDelegate">
+    <bpmn:sendTask id="Activity_0lny8xh" name="Sende Police" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.versicherungsgesellschaft.versicherungsantrag.communication.InstantiateAcceptOrDeclinePoliceStartProcessByMessageDelegate">
       <bpmn:incoming>Flow_05ku1hu</bpmn:incoming>
       <bpmn:outgoing>Flow_0tow9ix</bpmn:outgoing>
     </bpmn:sendTask>
@@ -427,7 +427,7 @@
     <bpmn:association id="Association_03zpwad" sourceRef="Event_1789jwh" targetRef="TextAnnotation_1boukxh" />
     <bpmn:association id="Association_01aahix" sourceRef="Event_1yvha04" targetRef="TextAnnotation_1dxx5re" />
   </bpmn:process>
-  <bpmn:process id="Process_01y1xi1" name="Versicherungsantrag 123" isExecutable="true">
+  <bpmn:process id="Process_01y1xi1" name="Versicherungsantrag Final" isExecutable="true">
     <bpmn:sequenceFlow id="Flow_1vocbh1" sourceRef="Activity_03z6c1q" targetRef="Event_0gnzpoq" />
     <bpmn:sequenceFlow id="Flow_1ed0c34" sourceRef="Activity_06achgj" targetRef="Event_0dvhav0" />
     <bpmn:sequenceFlow id="Flow_1b4jope" sourceRef="Event_1ijyck4" targetRef="Activity_06achgj" />
@@ -509,7 +509,7 @@
     </bpmn:startEvent>
     <bpmn:intermediateThrowEvent id="Event_0dvhav0" name="Sende überarbeitete Version ">
       <bpmn:incoming>Flow_1ed0c34</bpmn:incoming>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0jkwaod" messageRef="Message_0yaj3yf" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter.versicherungsantrag.InstantiateInsuranceRequestStartProcessByMessageDelegate" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0jkwaod" messageRef="Message_0yaj3yf" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.versicherungsgesellschaft.versicherungsantrag.communication.InstantiateInsuranceRequestStartProcessByMessageDelegate" />
     </bpmn:intermediateThrowEvent>
     <bpmn:userTask id="Activity_1mesf8f" name="Kunde erstellt Versicherungsantrag" camunda:assignee="Kunde">
       <bpmn:extensionElements>
@@ -582,7 +582,7 @@
     </bpmn:userTask>
     <bpmn:intermediateThrowEvent id="Event_0utaohl" name="Sende Versicherungsantrag">
       <bpmn:incoming>Flow_1nknccj</bpmn:incoming>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_04yvmnk" messageRef="Message_0yaj3yf" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter.versicherungsantrag.InstantiateInsuranceRequestStartProcessByMessageDelegate" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_04yvmnk" messageRef="Message_0yaj3yf" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.versicherungsgesellschaft.versicherungsantrag.communication.InstantiateInsuranceRequestStartProcessByMessageDelegate" />
     </bpmn:intermediateThrowEvent>
     <bpmn:startEvent id="Event_1gh4o5r">
       <bpmn:outgoing>Flow_0huu9k9</bpmn:outgoing>
@@ -593,7 +593,7 @@
     </bpmn:startEvent>
     <bpmn:intermediateThrowEvent id="Event_0gnzpoq" name="Sende Antwort">
       <bpmn:incoming>Flow_1vocbh1</bpmn:incoming>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_04tygei" messageRef="Message_0ewie9m" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter.versicherungsantrag.ContinueAnwerPoliceProcessByMessageDelegate" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_04tygei" messageRef="Message_0ewie9m" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.versicherungsgesellschaft.versicherungsantrag.communication.ContinueByAnwerPoliceProcessByMessageDelegate" />
     </bpmn:intermediateThrowEvent>
     <bpmn:sequenceFlow id="Flow_0zvm17m" sourceRef="Event_15fhhhc" targetRef="Activity_0f6fvi0" />
     <bpmn:userTask id="Activity_03z6c1q" name="Kunde prüft Police und widerruft diese ggf." camunda:assignee="Kunde">
@@ -610,7 +610,7 @@
       <bpmn:incoming>Flow_09kzcaa</bpmn:incoming>
       <bpmn:outgoing>Flow_1vocbh1</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sendTask id="Activity_0f6fvi0" name="Police wird durch inaktivität automatisch bestätigt" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter.versicherungsantrag.ContinueInactivityPoliceProcessByMessageDelegate">
+    <bpmn:sendTask id="Activity_0f6fvi0" name="Police wird durch inaktivität automatisch bestätigt" camunda:class="de.thkoeln.inf.sysges.camunda.servletwar.versicherungsgesellschaft.versicherungsantrag.communication.ContinueByInactivityPoliceProcessByMessageDelegate">
       <bpmn:incoming>Flow_0zvm17m</bpmn:incoming>
     </bpmn:sendTask>
     <bpmn:boundaryEvent id="Event_15fhhhc" name="3 Minuten &#10;(14 Tage)&#10;&#10;" attachedToRef="Activity_03z6c1q">
@@ -944,6 +944,12 @@
           <dc:Bounds x="2592" y="856" width="57" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_162s610_di" bpmnElement="Gateway_162s610" isMarkerVisible="true">
+        <dc:Bounds x="1055" y="785" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="993" y="779" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0tf1ozo_di" bpmnElement="TextAnnotation_0tf1ozo">
         <dc:Bounds x="1790" y="580" width="99.99274099883856" height="29.997822299651567" />
       </bpmndi:BPMNShape>
@@ -955,12 +961,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1boukxh_di" bpmnElement="TextAnnotation_1boukxh">
         <dc:Bounds x="2810" y="990" width="99.99274099883856" height="29.997822299651567" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_162s610_di" bpmnElement="Gateway_162s610" isMarkerVisible="true">
-        <dc:Bounds x="1055" y="785" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="993" y="779" width="73" height="27" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_1y8wgp1_di" bpmnElement="Association_1y8wgp1">
         <di:waypoint x="1781" y="667" />
@@ -1100,10 +1100,16 @@
       <bpmndi:BPMNEdge id="Flow_0awmilo_di" bpmnElement="Flow_0awmilo">
         <di:waypoint x="2980" y="1052" />
         <di:waypoint x="2980" y="410" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2977" y="457" width="85" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1bb52fh_di" bpmnElement="Flow_1bb52fh">
         <di:waypoint x="2910" y="893" />
         <di:waypoint x="2910" y="410" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2837" y="457" width="85" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0b6nra3_di" bpmnElement="Flow_0b6nra3">
         <di:waypoint x="1770" y="663" />
