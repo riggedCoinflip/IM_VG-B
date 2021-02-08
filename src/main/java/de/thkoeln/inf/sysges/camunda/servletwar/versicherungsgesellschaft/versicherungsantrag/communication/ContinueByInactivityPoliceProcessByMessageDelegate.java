@@ -1,4 +1,4 @@
-package de.thkoeln.inf.sysges.camunda.servletwar.versicherungsgesellschaft.versicherungsantrag;
+package de.thkoeln.inf.sysges.camunda.servletwar.versicherungsgesellschaft.versicherungsantrag.communication;
 
 
 import org.camunda.bpm.engine.RuntimeService;
@@ -13,7 +13,7 @@ import java.util.Map;
  * illustrating how a Java Delegate can be used 
  * from within a BPMN 2.0 Send Task to reply to another process
  */
-public class ContinueAnwerPoliceProcessByMessageDelegate implements JavaDelegate {
+public class ContinueByInactivityPoliceProcessByMessageDelegate implements JavaDelegate {
 
 	 /**
 	 *
@@ -24,8 +24,8 @@ public class ContinueAnwerPoliceProcessByMessageDelegate implements JavaDelegate
 		// fill the reply message with this instance process variables
 		Map<String, Object> processVariables = new HashMap();
 		processVariables = execution.getVariables();
-		// put user answer in here
-		processVariables.put("mIsPoliceCancelled", execution.getVariable("pv_isPoliceCancelled"));
+		// as user didnt answer in time, put default message - not cancelled - in here
+		processVariables.put("mIsPoliceCancelled", false);
 
 		// set the correlation id to identify the waiting process
 		String correlationId = (String) processVariables.get("correlationId");
