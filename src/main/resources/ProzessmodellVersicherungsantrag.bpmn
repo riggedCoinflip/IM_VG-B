@@ -589,7 +589,7 @@
     <bpmn:boundaryEvent id="Event_15fhhhc" name="3 Minuten &#10;(14 Tage)&#10;&#10;" attachedToRef="Activity_03z6c1q">
       <bpmn:outgoing>Flow_0zvm17m</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_1w8tu5g">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1M</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT3M</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
   </bpmn:process>
