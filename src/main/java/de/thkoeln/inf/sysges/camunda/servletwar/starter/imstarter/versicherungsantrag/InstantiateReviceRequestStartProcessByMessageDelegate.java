@@ -16,7 +16,7 @@ public class InstantiateReviceRequestStartProcessByMessageDelegate implements Ja
         // fill the message; use new names
         processVariables.put("pv_forename", execution.getVariable("mForename"));
         processVariables.put("pv_name", execution.getVariable("mName"));
-        processVariables.put("pv_Birthdate", execution.getVariable("mBirthdate"));
+        processVariables.put("pv_birthdate", execution.getVariable("mBirthdate"));
         processVariables.put("pv_sex", execution.getVariable("mSex"));
         processVariables.put("pv_height", execution.getVariable("mHeight"));
         processVariables.put("pv_weight", execution.getVariable("mWeight"));

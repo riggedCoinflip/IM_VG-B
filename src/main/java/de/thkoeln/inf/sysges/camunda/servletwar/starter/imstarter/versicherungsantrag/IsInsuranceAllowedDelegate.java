@@ -12,18 +12,21 @@ public class IsInsuranceAllowedDelegate implements JavaDelegate {
 
         if (pv_bmiRisk > 100 || pv_historyRisk >= 100) {
             delegateExecution.setVariable("pv_isInsurable", false);
+            delegateExecution.setVariable("pv_manualCheck", false);
         } else if (pv_ageRisk < 50 && pv_bmiRisk < 50 && pv_historyRisk < 50) {
             delegateExecution.setVariable("pv_isInsurable", true);
+            delegateExecution.setVariable("pv_manualCheck", false);
         } else if ((pv_ageRisk < 50 && (pv_bmiRisk >= 50 && pv_bmiRisk < 70) && pv_historyRisk < 50) || ((pv_ageRisk >= 50 && pv_ageRisk < 70) && pv_bmiRisk < 50 && pv_historyRisk < 50)) {
             delegateExecution.setVariable("pv_isInsurable", true);
+            delegateExecution.setVariable("pv_manualCheck", false);
         } else if ((pv_ageRisk >= 50 && pv_ageRisk < 70) && (pv_bmiRisk >= 50 && pv_bmiRisk < 70)) {
-            delegateExecution.setVariable("pv_insuranceMode", "manual test");
+            delegateExecution.setVariable("pv_manualCheck", true);
         } else if (pv_historyRisk >= 50) {
-            delegateExecution.setVariable("pv_insuranceMode", "manual test");
+            delegateExecution.setVariable("pv_manualCheck", true);
         } else if (pv_ageRisk >= 70 && pv_historyRisk >= 25) {
-            delegateExecution.setVariable("pv_insuranceMode", "manual test");
+            delegateExecution.setVariable("pv_manualCheck", true);
         } else if (pv_bmiRisk >= 50 && pv_historyRisk >= 25) {
-            delegateExecution.setVariable("pv_insuranceMode", "manual test");
+            delegateExecution.setVariable("pv_manualCheck", true);
         } else {
             throw new IllegalArgumentException(String.format("No insurance policy for ageRisk = %d, bmiRisk = %d, historyRisk =  %d", pv_ageRisk, pv_bmiRisk, pv_historyRisk));
         }
