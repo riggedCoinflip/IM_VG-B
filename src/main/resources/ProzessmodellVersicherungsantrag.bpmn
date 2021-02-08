@@ -273,7 +273,7 @@
     <bpmn:sequenceFlow id="Flow_0b7knm0" name="nein" sourceRef="Gateway_162s610" targetRef="Gateway_0sjrx5q">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${not pv_isInsurable}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_04aue3e" sourceRef="Activity_055g0jk" targetRef="Activity_02e3r9b" />
+    <bpmn:sequenceFlow id="Flow_04aue3e" sourceRef="Activity_055g0jk" targetRef="Gateway_162s610" />
     <bpmn:sequenceFlow id="Flow_0ssmmxs" name="ja" sourceRef="Gateway_04etefm" targetRef="Activity_0z4t9ih">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${pv_isFormComplete}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -405,16 +405,11 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_07po9g4" sourceRef="Event_059lpto" targetRef="Gateway_0q3fuah" />
     <bpmn:exclusiveGateway id="Gateway_162s610" name="Versicherungs-&#10;fähig?">
-      <bpmn:incoming>Flow_0dw9bex</bpmn:incoming>
+      <bpmn:incoming>Flow_04aue3e</bpmn:incoming>
       <bpmn:outgoing>Flow_0b7knm0</bpmn:outgoing>
       <bpmn:outgoing>Flow_0u5zgky</bpmn:outgoing>
       <bpmn:outgoing>Flow_0imjswi</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_02e3r9b">
-      <bpmn:incoming>Flow_04aue3e</bpmn:incoming>
-      <bpmn:outgoing>Flow_0dw9bex</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0dw9bex" sourceRef="Activity_02e3r9b" targetRef="Gateway_162s610" />
     <bpmn:textAnnotation id="TextAnnotation_0tf1ozo">
       <bpmn:text>Nicht modelliert</bpmn:text>
     </bpmn:textAnnotation>
@@ -684,10 +679,8 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_04aue3e_di" bpmnElement="Flow_04aue3e">
-        <di:waypoint x="940" y="850" />
-        <di:waypoint x="940" y="865" />
-        <di:waypoint x="980" y="865" />
-        <di:waypoint x="980" y="880" />
+        <di:waypoint x="990" y="810" />
+        <di:waypoint x="1055" y="810" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0b7knm0_di" bpmnElement="Flow_0b7knm0">
         <di:waypoint x="1080" y="785" />
@@ -809,11 +802,6 @@
       <bpmndi:BPMNEdge id="Flow_0zrdwsw_di" bpmnElement="Flow_0zrdwsw">
         <di:waypoint x="550" y="810" />
         <di:waypoint x="655" y="810" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0dw9bex_di" bpmnElement="Flow_0dw9bex">
-        <di:waypoint x="998" y="880" />
-        <di:waypoint x="1030" y="810" />
-        <di:waypoint x="1055" y="810" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Gateway_0dw8s6p_di" bpmnElement="Gateway_0dw8s6p" isMarkerVisible="true">
         <dc:Bounds x="1745" y="886" width="50" height="50" />
@@ -973,9 +961,6 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="993" y="779" width="73" height="27" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_08mzwjt_di" bpmnElement="Activity_02e3r9b">
-        <dc:Bounds x="930" y="880" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_1y8wgp1_di" bpmnElement="Association_1y8wgp1">
         <di:waypoint x="1781" y="667" />
