@@ -1,4 +1,4 @@
-package de.thkoeln.inf.sysges.camunda.servletwar.starter.imstarter.versicherungsantrag;
+package de.thkoeln.inf.sysges.camunda.servletwar.versicherungsgesellschaft.versicherungsantrag;
 
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
