@@ -55,6 +55,9 @@ mvn clean package
 of your application server `tomcat/webapps`.
 3. Start the Camunda Modeler and open the [BPMN Process](src/main/resources/ProzessmodellVersicherungsantrag.bpmn).
 Deploy the diagram to the Camunda server by clicking on deploy and again deploy on the opening menu.
+4.Head over to the Camunda Tasklist and start a new process of "Versicherungsantrag". 
+Now, click on "All Tasks" on the left and select the newly generated process. To edit the forms and complete the tasks,
+either login as the assignee or claim ownership by first unclaiming the current assignee and then claim the task for yourself.
 
 ### Run and Inspect with Tasklist and Cockpit
 Once you deployed the application you can run it using
