@@ -17,10 +17,10 @@ the customer. The police activates unless the customer cancels it within a certa
 
 ## How to use it?
 You start in the customer process "create request for insurance" where you enter the customer details in a form. 
-This form is sent to the VG AG which processes the data further. 3 possible end states can be reached:
-- The user is not allowed for the insurance. No police got created.
-- The user is eligible for an insurance. A police got created but the user cancelled it.
-- The user is eligible for an insurance. A police got created and the user did not cancel it. The police is active.
+This form is being send to the VG AG which processes the data further. 3 possible end states can be reached:
+- The user is ineligible  for the insurance. No police got created.
+- The user is eligible for an insurance. A police got created, but the user cancelled it.
+- The user is eligible for an insurance. A police got created, and the user did not cancel it. The police is active.
 
 ### Installation and Setup
 #### Prerequisites
